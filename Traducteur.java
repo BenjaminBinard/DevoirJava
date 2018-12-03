@@ -10,28 +10,26 @@ public class Traducteur {
 	private String texte_java;
 	private Lettre lettre;
 
-	public Traducteur()
-	{
+	public Traducteur(){
 
 	}
 
-
-	public String traduction(String txt)
-	{
+	// Traduction Français vers Javanais
+	public String traduction(String txt){
 		texte = txt;
 		String txtjava = new String();
 
-		for(int i = 0; i<txt.length(); i++)
-		{
+		// Traitement lettre par lettre
+		for(int i = 0; i<txt.length(); i++){
+			// Récupération de la lettre
 			lettre = new Lettre(txt.charAt(i));
 
-			if(lettre.estVoyelle())
-			{
-				if (lettre.estY())
-				{
-					Lettre lettre_suiv = new Lettre(txt.charAt(i+1));
-					if(lettre_suiv.estVoyelle())
-						txtjava = txtjava.concat("av"+ lettre.toString());
+			// Si la lettre est une voyelle
+			if(lettre.estVoyelle()){
+				if (lettre.estY()){
+					Lettre lettre_suiv = new Lettre(txt.charAt(i+1)); // On regarde la lettre suivante
+					if(lettre_suiv.estVoyelle()) // Si celle-ci est une voyelle
+						txtjava = txtjava.concat("av"+ lettre.toString());// Alors on ajoute "av"
 				}
 				else
 					txtjava = txtjava.concat("av"+ lettre.toString());
@@ -42,48 +40,40 @@ public class Traducteur {
 		}
 
 		texte_java = txtjava;
+		// On renvoie le texte une fois la conversion terminée
 		return txtjava;
 	}
 
-	public String traductionJ(String txt)
-	{
+	// Traduction Javanais vers Français
+	public String traductionJ(String txt){
 		texte = txt;
 		String txtjava = new String();
 		int i = 0;
-		System.out.println(txt.length());
 
-		while(i<=txt.length()-2)
-		{
-			System.out.println(i);
+		while(i<=txt.length()-1){
 
 			lettre = new Lettre(txt.charAt(i));
-			Lettre lettre_suiv = new Lettre(txt.charAt(i+1));
-			Lettre lettre_suiv2 = new Lettre(txt.charAt(i+2));
-
-			if(lettre_suiv.estV())
-			{
-
-				if(lettre.estA() && lettre_suiv2.estVoyelle())
-					{
+			if(i<txt.length()-2){
+				Lettre lettre_suiv = new Lettre(txt.charAt(i+1));
+				Lettre lettre_suiv2 = new Lettre(txt.charAt(i+2));
+				if(lettre_suiv.estV()){
+					if(lettre.estA() && lettre_suiv2.estVoyelle()){
 						txtjava = txtjava.concat(lettre_suiv2.toString());
 						i = i + 2;
-
-						if(i==txt.length()-2)
-						{
+						if(i==txt.length()-2){
 							lettre = new Lettre(txt.charAt(txt.length()-1));
 							txtjava = txtjava.concat(lettre.toString());
 						}
-
 					}
-
-			}
-
-			else
+				}
+				else
 				txtjava = txtjava.concat(lettre.toString());
 				i = i + 1;
-
+			}else{
+				txtjava = txtjava.concat(lettre.toString());
+				i = i + 1;
+			}
 		}
-
 		texte_java = txtjava;
 		return txtjava;
 	}
