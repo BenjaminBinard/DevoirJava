@@ -23,8 +23,8 @@ public class Fenetre extends JFrame implements ActionListener{
   }
 
   public void placementInterne(){
-    JLabel titreATraduire = new JLabel("Texte à traduire en Javanais");
-    JLabel titreTraduction = new JLabel("Texte traduis");
+    JLabel titreATraduire = new JLabel("Texte à traduire");
+    JLabel titreTraduction = new JLabel("Texte traduit");
     int width = 50;
     int height=50;
     titreATraduire.setMinimumSize(new Dimension(width, height));
@@ -67,17 +67,6 @@ public class Fenetre extends JFrame implements ActionListener{
     JPanel bas2 = new JPanel();
     bas2.add(this.butTraduire);
     bas2.add(this.butTraduireFr);
-    //getContentPane().add(bas, BorderLayout.WEST);
-    //getContentPane().add(bas2, BorderLayout.EAST);
-    /*
-    JPanel gauche = new JPanel();
-    gauche.add(this.ATraduire);
-    getContentPane().add(gauche,BorderLayout.WEST);
-
-    JPanel droite = new JPanel();
-    droite.add(this.Traduction);
-    //droite.add(bas);
-    getContentPane().add(droite,BorderLayout.EAST);*/
 
     Panel panel = new Panel();
     panel.setSize(300,300);
