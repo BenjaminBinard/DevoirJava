@@ -11,10 +11,12 @@ public class Fenetre extends JFrame implements ActionListener{
   private JButton butQuitter;
   private JTextArea ATraduire;
   private JTextArea Traduction;
+  private Traducteur Translator;
   private String texte;
 
   public Fenetre(int tailleX, int tailleY){
     super();
+    Translator = new Traducteur();
     this.setSize(tailleX,tailleY);
     this.setVisible(true);
     this.setTitle("Traducteur Javanais <-> Français");
@@ -27,12 +29,8 @@ public class Fenetre extends JFrame implements ActionListener{
     JLabel titreTraduction = new JLabel("Texte traduit");
     int width = 50;
     int height=50;
-    titreATraduire.setMinimumSize(new Dimension(width, height));
     titreATraduire.setPreferredSize(new Dimension(width, height));
-    titreATraduire.setMaximumSize(new Dimension(width, height));
-    titreTraduction.setMinimumSize(new Dimension(width, height));
     titreTraduction.setPreferredSize(new Dimension(width, height));
-    titreTraduction.setMaximumSize(new Dimension(width, height));
     this.butTraduire = new JButton ("Traduire en Javanais");
     this.butTraduire.addActionListener(this);
     this.butTraduireFr = new JButton ("Traduire en Français");
@@ -114,10 +112,12 @@ public class Fenetre extends JFrame implements ActionListener{
     if (e.getSource() == this.butTraduire) {
       this.texte = this.ATraduire.getText();
       System.out.println(this.texte);
+      this.Traduction.setText(Translator.traduction(this.texte));
     }
     if (e.getSource() == this.butTraduireFr) {
       this.texte = this.ATraduire.getText();
       System.out.println(this.texte);
+      this.Traduction.setText(Translator.traductionJ(this.texte));
     }
     if (e.getSource() == this.butEffacer) {
       this.ATraduire.setText(null);
@@ -126,10 +126,6 @@ public class Fenetre extends JFrame implements ActionListener{
     if (e.getSource() == this.butQuitter) {
       System.exit(0);
     }
-  }
-
-  public static void main( String [] args ) {
-   Fenetre maFen = new Fenetre(200,400); // Chez Momo
   }
 
 }
